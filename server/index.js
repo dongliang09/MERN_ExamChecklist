@@ -9,7 +9,7 @@ app.use(express.json());
 app.use(cors());
 
 mongoose.connect(
-    "mongodb+srv://admin-DLL:ThankYou1@cluster0.jftqn.mongodb.net/MernTest?retryWrites=true&w=majority"
+    //insert your link to database
 )
 
 /* localhost

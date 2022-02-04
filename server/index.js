@@ -9,7 +9,7 @@ app.use(express.json());
 app.use(cors());
 
 mongoose.connect(
-    //insert your link to database
+    "mongodb+srv://admin-DLL:ThankYou1@cluster0.jftqn.mongodb.net/MernTest?retryWrites=true&w=majority"
 )
 
 /* localhost
@@ -19,7 +19,16 @@ mongoose.connect(
 ); */
 
 app.get("/getExam", (req,res) => {
-    // get the data from database
+    // get the data from database and sort by date
+    ExamModel.find({}).sort('date').exec((err,result) => {
+        if (err) {
+            res.send(err) //res.json(err) //send error on html front page
+        } else {
+            res.send(result)  //res.json(result)
+        }
+    });
+
+   /* without sorting  
     ExamModel.find({}, (err,result) => { 
         //callback function return 2 arguments -- error and result
         if (err) {
@@ -27,8 +36,7 @@ app.get("/getExam", (req,res) => {
         } else {
             res.send(result)  //res.json(result)
         }
-    })
-
+    }) */
 })
 
 app.post("/createExam", async (req,res) => {
